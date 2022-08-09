@@ -1,0 +1,165 @@
+vim.api.nvim_set_keymap("n", "<Leader>bb", ":split<CR>", { noremap = true, })
+vim.api.nvim_set_keymap("n", "<Leader>bv", ":vsplit<CR>", { noremap = true, })
+vim.api.nvim_set_keymap("n", "<Leader>bx", ":bd!<CR>", { noremap = true, })
+vim.api.nvim_set_keymap("n", "<leader>bd", ":%bd!<CR>", { noremap = true, })
+vim.api.nvim_set_keymap("n", "<leader>be", "<C-w>=<CR>", { noremap = true, })
+vim.api.nvim_set_keymap("n", "<leader>bn", ":sp new<CR>", { noremap = true, })
+vim.api.nvim_set_keymap("n", "<leader>bo", "<c-w>o<CR>", { noremap = true, })
+vim.api.nvim_set_keymap("n", "<leader>bh", "<c-w>H<CR>", { noremap = true, })
+vim.api.nvim_set_keymap("n", "<leader>bj", "<c-w>J<CR>", { noremap = true, })
+vim.api.nvim_set_keymap("n", "<leader>bk", "<c-w>K<CR>", { noremap = true, })
+vim.api.nvim_set_keymap("n", "<leader>bl", "<c-w>L<CR>", { noremap = true, })
+vim.api.nvim_set_keymap("n", "<leader>cj", ":Cheat js <CR>", { noremap = true, })
+vim.api.nvim_set_keymap("n", "<leader>cs", ":Cheat <CR>", { noremap = true, })
+vim.api.nvim_set_keymap("n", "<Leader>db", ":call vimspector#ToggleBreakpoint()<CR>", { noremap = true, })
+vim.api.nvim_set_keymap("n", "<Leader>dc", "<Plug>VimspectorToggleConditionalBreakpoint", { noremap = true, })
+vim.api.nvim_set_keymap("n", "<Leader>di", "<Plug>VimspectorBalloonEval", { })
+vim.api.nvim_set_keymap("n", "<Leader>dd", ":call vimspector#Launch()<CR>", { noremap = true, })
+vim.api.nvim_set_keymap("n", "<Leader>de", ":VimspectorEval<CR>", { })
+vim.api.nvim_set_keymap("n", "<Leader>df", "<Plug>VimspectorAddFunctionBreakpoint", { noremap = true, })
+vim.api.nvim_set_keymap("n", "<Leader>dg", ":call vimspector#RunToCursor()<CR>", { noremap = true, })
+vim.api.nvim_set_keymap("n", "<Leader>do", ":call GotoWindow(g:vimspector_session_windows.output)<CR>", { noremap = true, })
+vim.api.nvim_set_keymap("n", "<Leader>dp", "<Plug>VimspectorPause", { noremap = true, })
+vim.api.nvim_set_keymap("n", "<Leader>dR", ":call vimspector#Restart()<CR>", { noremap = true, })
+vim.api.nvim_set_keymap("n", "<Leader>ds", ":call vimspector#Stop()<CR>", { noremap = true, })
+vim.api.nvim_set_keymap("n", "<Leader>dt", ":call GotoWindow(g:vimspector_session_windows.tagpage)<CR>", { noremap = true, })
+vim.api.nvim_set_keymap("n", "<Leader>dv", ":call GotoWindow(g:vimspector_session_windows.variables)<CR>", { noremap = true, })
+vim.api.nvim_set_keymap("n", "<Leader>dw", ":call GotoWindow(g:vimspector_session_windows.watches)<CR>", { noremap = true, })
+vim.api.nvim_set_keymap("n", "<Leader>dx", ":call vimspector#ClearBreakpoints()<CR>", { noremap = true, })
+vim.api.nvim_set_keymap("n", "<leader>ga", ":Gwrite<CR>", { noremap = true, })
+vim.api.nvim_set_keymap("n", "gb", "<C-^><CR>", { silent = true, })
+vim.api.nvim_set_keymap("n", "<leader>gc", ":Git commit -m ", { noremap = true, })
+vim.api.nvim_set_keymap("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", { silent = true, noremap = true, })
+vim.api.nvim_set_keymap("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", { silent = true, noremap = true, })
+vim.api.nvim_set_keymap("n", "gf", "<C-]><CR>", { silent = true, noremap = true, })
+vim.api.nvim_set_keymap("n", "<leader>gg", ":terminal git pull", { noremap = true, })
+vim.api.nvim_set_keymap("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", { silent = true, noremap = true, })
+vim.api.nvim_set_keymap("n", "<leader>gp", ":Git push<CR>", { noremap = true, })
+vim.api.nvim_set_keymap("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", { silent = true, noremap = true, })
+vim.api.nvim_set_keymap("n", "<leader>gs", ":G<CR>", { noremap = true, })
+vim.api.nvim_set_keymap("n", "<leader>sr", ":%s/", { noremap = true, })
+vim.api.nvim_set_keymap("n", "<leader>j", ":VimwikiFollowLink<CR>", { noremap = true, })
+vim.api.nvim_set_keymap("n", "<leader>k", ":VimwikiGoBackLink<CR>", { noremap = true, })
+vim.api.nvim_set_keymap("n", "<Leader>li", ":LspInfo<CR>", { noremap = true, })
+vim.api.nvim_set_keymap("n", "<Leader>ms", ":SudaWrite<CR>", { noremap = true, })
+vim.api.nvim_set_keymap("n", "<Leader>mw", ":w!<CR>", { noremap = true, })
+vim.api.nvim_set_keymap("n", "<Leader>ma", ":w ", { noremap = true, })
+vim.api.nvim_set_keymap("n", "<Leader>md", ":call delete(expand('%'))<CR>", { noremap = true, })
+vim.api.nvim_set_keymap("n", "<Leader>mc", ":wqa<CR>", { noremap = true, })
+vim.api.nvim_set_keymap("n", "<Leader>mq", ":q<CR>", { noremap = true, })
+vim.api.nvim_set_keymap("n", "<Leader>mx", ":q!<CR>", { noremap = true, })
+vim.api.nvim_set_keymap("n", "<leader>mr", ":Rename! ", { noremap = true, })
+vim.api.nvim_set_keymap("n", "<Leader>mm", ":MaximizerToggle!<CR>", { })
+vim.api.nvim_set_keymap("n", "<Leader>mn", ":e %:h/", { })
+vim.api.nvim_set_keymap("n", "<Leader>nt", ":NERDTree<CR>", { noremap = true, })
+vim.api.nvim_set_keymap("n", "<leader>oi", ":e C:\\Users\\Elle\\AppData\\Local\\nvim\\init.vim<CR>", { noremap = true, })
+vim.api.nvim_set_keymap("n", "<leader>pi", ":PlugInstall<CR>", { noremap = true, })
+vim.api.nvim_set_keymap("n", "<leader>oa", ":e C:\\Users\\ELLE\\Desktop\\Shane\\projects\\dev_agency\\<CR>", { noremap = true, })
+vim.api.nvim_set_keymap("n", "<leader>ob", ":e C:\\Users\\ELLE\\Desktop\\Shane\\vs_code\\i_bet_you_wont\\src\\App.js<CR>", { noremap = true, })
+vim.api.nvim_set_keymap("n", "<leader>ol", ":e C:\\Users\\Elle\\AppData\\Local\\nvim\\lua\\config.lua<CR>", { noremap = true, })
+vim.api.nvim_set_keymap("n", "<leader>or", ":e C:\\Users\\ELLE\\Desktop\\Shane\\projects\\rs_challenge_dev\\<CR>", { noremap = true, })
+vim.api.nvim_set_keymap("n", "<leader>oe", ":e C:\\Users\\ELLE\\Desktop\\Shane\\projects\\elle_progress\\<CR>", { noremap = true, })
+vim.api.nvim_set_keymap("n", "<leader>ok", ":e C:\\Users\\Elle\\AppData\\Local\\nvim\\lua\\keymaps.lua<CR>", { noremap = true, })
+vim.api.nvim_set_keymap("n", "<leader>op", ":e C:\\Users\\ELLE\\Desktop\\Shane\\projects\\progress\\<CR>", { noremap = true, })
+vim.api.nvim_set_keymap("n", "<leader>os", ":e C:\\Users\\ELLE\\AppData\\Local\\nvim\\friendly_snippets\\snippets\\javascript\\javascript.json<CR>", { noremap = true, })
+vim.api.nvim_set_keymap("n", "<leader>ot", ":e C:\\Users\\ELLE\\Desktop\\Shane\\projects\\test\\src\\App.js<CR>", { noremap = true, })
+vim.api.nvim_set_keymap("n", "<leader>ou", ":e C:\\Users\\ELLE\\AppData\\Local\\nvim\\snippets\\<CR>", { noremap = true, })
+vim.api.nvim_set_keymap("n", "<leader>pa", ":ASOn<CR>", { noremap = true, })
+vim.api.nvim_set_keymap("n", "<leader>pA", ":ASOff<CR>", { noremap = true, })
+vim.api.nvim_set_keymap("n", "<leader>ps", ":PlugStatus<CR>", { noremap = true, })
+vim.api.nvim_set_keymap("n", "<leader>ri", ":%s/X/\\=Incr()<CR>", { noremap = true, })
+vim.api.nvim_set_keymap("n", "<leader>rx", ":%s/XXX/", { noremap = true, })
+vim.api.nvim_set_keymap("n", "<leader>sb", ":ls<CR>:b<space>", { noremap = true, })
+vim.api.nvim_set_keymap("n", "<leader>sl", ":luafile %<CR>", { noremap = true, })
+vim.api.nvim_set_keymap("n", "<leader>sm", ":marks<CR>", { noremap = true, })
+vim.api.nvim_set_keymap("n", "<leader>sv", ":source $MYVIMRC<CR>", { noremap = true, })
+vim.api.nvim_set_keymap("n", "<leader>tc", ":tabc<CR>", { noremap = true, })
+vim.api.nvim_set_keymap("n", "<leader>th", ":nohlsearch<CR>", { noremap = true, })
+vim.api.nvim_set_keymap("n", "<leader>to", ":tabo<CR>", { noremap = true, })
+vim.api.nvim_set_keymap("n", "<Leader>tt", ":ToggleTerm size=10 direction=horizontal<CR>", { noremap = true, })
+vim.api.nvim_set_keymap("n", "<Leader>t1", ":1ToggleTerm size=10 direction=horizontal<CR>", { noremap = true, })
+vim.api.nvim_set_keymap("n", "<Leader>t2", ":2ToggleTerm size=10<CR>", { noremap = true, })
+vim.api.nvim_set_keymap("n", "<Leader>t3", ":3ToggleTerm size=10<CR> ", { noremap = true, })
+vim.api.nvim_set_keymap("n", "<Leader>t4", ":4ToggleTerm size=10<CR>", { noremap = true, })
+vim.api.nvim_set_keymap("n", "<Leader>t5", ":5ToggleTerm size=40<CR> ", { noremap = true, })
+vim.api.nvim_set_keymap("n", "<leader>uu", ":MundoToggle<CR>", { noremap = true, })
+vim.api.nvim_set_keymap("n", "<leader>wc", ":Calendar<CR>", { })
+vim.api.nvim_set_keymap("n", "<leader>wd", "<Plug>VimwikiDeleteFile", { })
+vim.api.nvim_set_keymap("n", "<leader>wg", "<Plug>VimwikiDiaryGenerateLinks", { })
+vim.api.nvim_set_keymap("n", "<leader>wh", "<Plug>VimwikiDecrementListItem", { })
+vim.api.nvim_set_keymap("n", "<leader>wl", "<Plug>VimwikiIncrementListItem", { })
+vim.api.nvim_set_keymap("n", "<leader>wn", "<Plug>VimwikiMakeDiaryNote", { })
+vim.api.nvim_set_keymap("n", "<leader>wt", "<Plug>VimwikiMakeTomorrowDiaryNote", { })
+vim.api.nvim_set_keymap("n", "<leader>ww", ":VimwikiIndex<CR>", { })
+vim.api.nvim_set_keymap("n", "<leader>wy", "<Plug>VimwikiMakeYesterdayDiaryNote<CR>", { })
+vim.api.nvim_set_keymap("n", "<leader>w,", "<Plug>VimwikiDiaryPrevDay", { })
+vim.api.nvim_set_keymap("n", "<leader>w.", "<Plug>VimwikiDiaryNextDay", { })
+vim.api.nvim_set_keymap("n", "<leader>zb", ":Buffers<CR>", { noremap = true, })
+vim.api.nvim_set_keymap("n", "<leader>zc", ":HopChar2<CR>", { noremap = true, })
+vim.api.nvim_set_keymap("n", "<leader>zf", ":Files ~<CR>", { noremap = true, })
+vim.api.nvim_set_keymap("n", "<leader>zg", ":BCommits<CR>", { noremap = true, })
+vim.api.nvim_set_keymap("n", "<leader>zh", ":History<CR>", { noremap = true, })
+vim.api.nvim_set_keymap("n", "<leader>zm", ":Maps<CR>", { noremap = true, })
+vim.api.nvim_set_keymap("n", "<leader>zt", ":BTags<CR>", { noremap = true, })
+vim.api.nvim_set_keymap("n", "<leader>zw", ":Windows<CR>", { noremap = true, })
+vim.api.nvim_set_keymap("n", "<leader>:", "@:", { noremap = true, })
+vim.api.nvim_set_keymap("n", "<leader>@", "@@", { noremap = true, })
+vim.api.nvim_set_keymap("n", "<leader>[", "[{", { noremap = true, })
+vim.api.nvim_set_keymap("n", "<leader>]", "]}", { noremap = true, })
+vim.api.nvim_set_keymap("n", "<leader>j", "J", { noremap = true, })
+vim.api.nvim_set_keymap("n", "<leader>/", "<Plug>AgRawSearch", { })
+vim.api.nvim_set_keymap("n", "<leader>ia", "gg=G", { noremap = true, })
+
+"nmap gd yiw/function<space><c-r>0<CR>
+nnoremap <A-,> :bprevious<CR>
+nnoremap <A-.> :bnext<CR>
+nmap <A-k> :call vimspector#StepOut()<CR>
+nmap <A-j> :call vimspector#StepOver()<CR>
+nmap <A-l> :call vimspector#StepInto()<CR>
+nmap <A-h> :call vimspector#Continue()<CR>
+
+nnoremap <silent> <c-a> <cmd>lua vim.lsp.buf.code_action()<CR>
+nnoremap <silent> <c-d> <cmd>lua vim.lsp.buf.hover()<CR>
+imap <silent><expr> <C-E> luasnip#choice_active() ? '<Plug>luasnip-next-choice' : '<C-E>'
+smap <silent><expr> <C-E> luasnip#choice_active() ? '<Plug>luasnip-next-choice' : '<C-E>'
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+nnoremap <silent> <c-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
+nmap <C-p> :terminal {start C:\Users\ELLE\Desktop\Shane\music\elle_1.ly}
+nnoremap <silent> <c-x> <cmd>lua vim.diagnostic.goto_next()<CR>
+nnoremap <silent> <c-z> <cmd>lua vim.diagnostic.goto_prev()<CR>
+
+
+snoremap <silent> <Tab> <cmd>lua require('luasnip').jump(1)<Cr>
+imap <silent><expr> <Tab> luasnip#expand_or_jumpable() ? '<Plug>luasnip-expand-or-jump' : '<Tab>' 
+
+inoremap <silent> <S-Tab> <cmd>lua require'luasnip'.jump(-1)<Cr>
+snoremap <silent> <S-Tab> <cmd>lua require('luasnip').jump(-1)<Cr>
+
+nnoremap <C-S-h> :vertical resize -5<CR>
+nnoremap <C-S-l> :vertical resize +5<CR>
+nnoremap <C-S-j> :resize -5<CR>
+nnoremap <C-S-k> :resize +5<CR>
+
+
+nnoremap <up> <C-w><up>
+nnoremap <down> <C-w><down>
+nnoremap <left> <C-w><left>
+nnoremap <right> <C-w><right>
+
+nmap D \"_d
+nnoremap g* g*zz
+nnoremap g# g#zz
+inoremap jk <esc>
+vnoremap J 5j
+nnoremap J 5j
+vnoremap K 5k
+nnoremap K 5k
+nnoremap <silent> n nzz
+nnoremap <silent> N Nzz
+nnoremap Y y$
+
+nnoremap <silent> * *zz
+nnoremap <silent> # #zz
