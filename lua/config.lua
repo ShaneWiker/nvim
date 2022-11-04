@@ -37,6 +37,7 @@ lspconfig.jsonls.setup{}
 lspconfig.pyright.setup{}
 lspconfig.vimls.setup{}
 lspconfig.yamlls.setup{}
+lspconfig.dockerls.setup{}
 
 require("toggleterm").setup{}
 
@@ -45,109 +46,23 @@ require'nvim-lsp-installer'.post_install_hook = function ()
   vim.cmd("bufdo e") -- this triggers the FileType autocmd that starts the server
 end
 
-require'nvim-treesitter.configs'.setup {
-  ensure_installed = "all", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
-  sync_install = false, -- install languages synchronously (only applied to `ensure_installed`)
-  ignore_install = {}, -- List of parsers to ignore installing
-  highlight = {
-    enable = true, -- false will disable the whole extension
-    disable = {},  -- list of language that will be disabled **** <<<<<<<<<<<<
-    -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
-    -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
-    -- Using this option may slow down your editor, and you may see some duplicate highlights.
-    -- Instead of true it can also be a list of languages
-    additional_vim_regex_highlighting = false,
-  },
-  indent = {
-    enable = true
-  }
-}
-
---cmp_luasnip
-local ls = require("luasnip")
-require("luasnip").filetype_extend("javascript", {"javascriptreact"}) --{{{
-
---require("luasnip.loaders.from_vscode").lazy_load()
-require("luasnip.loaders.from_vscode").lazy_load({ paths = "C:\\Users\\ELLE\\AppData\\Local\\nvim\\friendly_snippets" })
-require("luasnip.loaders.from_vscode").load()
---require("luasnip").config.setup({ store_selection_keys = "<A-p>" })
-
-vim.cmd([[command! LuaSnipEdit :lua require("luasnip.loaders.from_lua").edit_snippet_files()]]) --}}}
-
--- Virtual Text{{{
-local types = require("luasnip.util.types")
-ls.config.set_config({
-	history = true, --keep around last snippet local to jump back
-	updateevents = "TextChanged,TextChangedI", --update changes as you type
-	enable_autosnippets = true,
-	ext_opts = {
-		[types.choiceNode] = {
-			active = {
-				virt_text = { { "●", "GruvboxOrange" } },
-			},
-		},
-		-- [types.insertNode] = {
-		-- 	active = {
-		-- 		virt_text = { { "●", "GruvboxBlue" } },
-		-- 	},
-		-- },
-	},
-}) --}}}
-
--- Key Mapping --{{{
-
-vim.keymap.set({ "i", "s" }, "<c-s>", "<Esc>:w<cr>")
-vim.keymap.set({ "i", "s" }, "<c-u>", '<cmd>lua require("luasnip.extras.select_choice")()<cr><C-c><C-c>')
-
-vim.keymap.set({ "i", "s" }, "<a-p>", function()
-	if ls.expand_or_jumpable() then
-		ls.expand()
-	end
-end, { silent = true })
-vim.keymap.set({ "i", "s" }, "<C-k>", function()
-	if ls.expand_or_jumpable() then
-		ls.expand_or_jump()
-	end
-end, { silent = true })
-vim.keymap.set({ "i", "s" }, "<C-j>", function()
-	if ls.jumpable() then
-		ls.jump(-1)
-	end
-end, { silent = true })
-
-vim.keymap.set({ "i", "s" }, "<A-y>", "<Esc>o", { silent = true })
-
-vim.keymap.set({ "i", "s" }, "<a-k>", function()
-	if ls.jumpable(1) then
-		ls.jump(1)
-	end
-end, { silent = true })
-vim.keymap.set({ "i", "s" }, "<a-j>", function()
-	if ls.jumpable(-1) then
-		ls.jump(-1)
-	end
-end, { silent = true })
-
-vim.keymap.set({ "i", "s" }, "<a-l>", function()
-	if ls.choice_active() then
-		ls.change_choice(1)
-	else
-		-- print current time
-		local t = os.date("*t")
-		local time = string.format("%02d:%02d:%02d", t.hour, t.min, t.sec)
-		print(time)
-	end
-end)
-vim.keymap.set({ "i", "s" }, "<a-h>", function()
-	if ls.choice_active() then
-		ls.change_choice(-1)
-	end
-end) --}}}
-
--- More Settings --
-
-vim.keymap.set("n", "<Leader><CR>", "<cmd>LuaSnipEdit<cr>", { silent = true, noremap = true })
-vim.cmd([[autocmd BufEnter */snippets/*.lua nnoremap <silent> <buffer> <CR> /-- End Refactoring --<CR>O<Esc>O]])
+-- require'nvim-treesitter.configs'.setup {
+--   ensure_installed = "all", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+--   sync_install = false, -- install languages synchronously (only applied to `ensure_installed`)
+--   ignore_install = {}, -- List of parsers to ignore installing
+--   highlight = {
+--     enable = true, -- false will disable the whole extension
+--     disable = {},  -- list of language that will be disabled **** <<<<<<<<<<<<
+--     -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
+--     -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
+--     -- Using this option may slow down your editor, and you may see some duplicate highlights.
+--     -- Instead of true it can also be a list of languages
+--     additional_vim_regex_highlighting = false,
+--   },
+--   indent = {
+--     enable = true
+--   }
+-- }
 
 --cmp
 local cmp = require("cmp")
@@ -375,7 +290,7 @@ vim.cmd('autocmd! TermOpen term://* lua set_terminal_keymaps()')
   })
 
   -- Setup lspconfig.
-  local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+  local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
   -- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
   require('lspconfig')['tsserver'].setup {
     capabilities = capabilities
@@ -555,3 +470,25 @@ end
 dap.listeners.before.event_exited["dapui_config"] = function()
   dapui.close()
 end
+
+require('telescope').setup{
+ extensions = {
+    file_browser = {
+      theme = "ivy",
+      -- disables netrw and use telescope-file-browser in its place
+      hijack_netrw = true,
+      mappings = {
+        ["i"] = {
+          -- your custom insert mode mappings
+        },
+        ["n"] = {
+          -- your custom normal mode mappings
+        },
+      },
+    },
+  },
+}
+require('telescope').load_extension('luasnip')
+require('telescope').load_extension('file_browser')
+
+require('lualine').setup {}

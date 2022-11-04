@@ -1,7 +1,7 @@
 nmap <leader>wx <Plug>VimwikiToggleListItem
 
-let l:vimwiki_fold_blank_lines = 0  " set to 1 to fold blank lines
-let l:vimwiki_header_type = '#'     " set to '=' for wiki syntax
+"let l:vimwiki_fold_blank_lines = 0  " set to 1 to fold blank lines
+"let l:vimwiki_header_type = '#'     " set to '=' for wiki syntax
 setlocal foldlevel=1
 setlocal foldenable
 setlocal foldmethod=expr

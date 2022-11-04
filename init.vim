@@ -19,16 +19,15 @@ Plug 'shaunsingh/nord.nvim'
 Plug 'williamboman/nvim-lsp-installer'
 Plug 'tpope/vim-surround'
 Plug 'nvim-lua/lsp-status.nvim'
-Plug 'puremourning/vimspector'
-Plug 'itchyny/lightline.vim'
+"Plug 'puremourning/vimspector'
+"Plug 'itchyny/lightline.vim'
 Plug 'szw/vim-maximizer'
 Plug 'jesseleite/vim-agriculture'
 Plug 'inkarkat/vim-ingo-library'
 Plug 'inkarkat/vim-SpellCheck'
-Plug 'nvim-treesitter/nvim-treesitter'
-Plug 'nvim-treesitter/nvim-treesitter-context'
-Plug 'nvim-treesitter/nvim-treesitter-refactor'
-Plug 'nvim-treesitter/nvim-treesitter-textobjects'
+"Plug 'nvim-treesitter/nvim-treesitter'
+"Plug 'nvim-treesitter/nvim-treesitter-refactor'
+"Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 Plug 'preservim/nerdtree'
 Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-path'
@@ -42,8 +41,8 @@ Plug 'jparise/vim-graphql'
 Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
 Plug 'ahmedkhalf/project.nvim'
 Plug 'jremmen/vim-ripgrep'
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
+"Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+"Plug 'junegunn/fzf.vim'
 Plug 'unblevable/quick-scope'
 Plug 'L3MON4D3/LuaSnip'
 "Plug 'rafamadriz/friendly-snippets'
@@ -63,7 +62,7 @@ Plug 'kyazdani42/nvim-web-devicons'
 Plug 'folke/trouble.nvim'
 Plug 'ThePrimeagen/harpoon'
 Plug 'matze/vim-move'
-Plug 'mhinz/vim-startify'
+"Plug 'mhinz/vim-startify'
 Plug 'kana/vim-textobj-user'
 Plug 'Julian/vim-textobj-variable-segment'
 Plug 'ahmedkhalf/lsp-rooter.nvim'
@@ -75,10 +74,26 @@ Plug 'weilbith/nvim-code-action-menu'
 "Plug 'kosayoda/nvim-lightbulb'
 Plug 'antoinemadec/FixCursorHold.nvim'
 Plug 'alvan/vim-closetag'
+Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
+Plug 'benfowler/telescope-luasnip.nvim'
+Plug 'nvim-lualine/lualine.nvim'
+Plug 'kyazdani42/nvim-web-devicons'
+Plug 'romgrk/barbar.nvim'
+Plug 'nvim-telescope/telescope-file-browser.nvim'
+
+"Taskwiki
+"Plug 'tools-life/taskwiki'
+"Plug 'powerman/vim-plugin-AnsiEsc'
+"Plug 'majutsushi/tagbar'
+"Plug 'plasticboy/vim-markdown'
+"Plug 'xarthurx/taskwarrior.vim'
+
+"Themes
+Plug 'catppuccin/nvim'
 call plug#end()
 
 set vb t_vb=
-set noswapfile
+"set noswapfile
 
 hi TabLine    gui=NONE guibg=#000000 guifg=#abb2bf    cterm=NONE term=NONE ctermfg=black ctermbg=white
 
@@ -105,10 +120,11 @@ if hostname() == 'LAPTOP-5C92PE9G'
 let g:vimwiki_list = [{'path': 'C:/Users/ELLE/Dropbox/Vimwiki',
                       \ 'syntax': 'markdown', 'ext': '.md',
                       \ 'index': 'Wiki' }]
-else
-let g:vimwiki_list = [{'path': 'C:/Users/TheNomad/Dropbox/Vimwiki',
+endif
+if hostname() == 'amethyst'
+let g:vimwiki_list = [{'path': '~/Dropbox/Vimwiki',
                       \ 'syntax': 'markdown', 'ext': '.md',
-                      \ 'index': 'Wiki'}]
+                      \ 'index': 'Wiki' }]
 endif
 
 if !has('gui_running')
@@ -116,78 +132,6 @@ if !has('gui_running')
 endif
 
 let g:NERDTreeShowHidden = 1
-
-let g:lightline = {
-			\ 'colorscheme': 'nord',
-			\ 'component': {
-			\ 'spell': '%{&spell?"SPELL":""}',
-			\ 'lineinfo': '%3l/%1L:%-2c'},
-			\ 'active': {
-			\ 'left': [ [ 'mode', 'paste', 'spell' ],
-			\ ['gitbranch', 'readonly', 'filename' ] ],
-			\ 'right': [ [ 'lineinfo' ],
-			\ [ 'filetype' ], [ 'linter_errors' ], [ 'lsp_diagnostics_hints' ], [ 'lsp_diagnostics_warnings' ], [ 'lsp_diagnostics_errors' ] ] },
-			\ 'inactive': {
-			\ 'left': [ ['filename'] ],
-			\ 'right': [ ['filetype'] ] },
-			\ 'component_function': {
-			\ 'gitbranch': 'FugitiveHead',
-			\ 'filename': 'LightlineFilename',
-			\ 'lsp_diagnostics_hints': 'LspHints',
-			\ 'lsp_diagnostics_warnings': 'LspWarnings',
-			\ 'lsp_diagnostics_errors': 'LspErrors',
-			\ }
-			\ }
-let g:lightline.component_expand = {
-			\ 'linter_errors': 'lightline#ale#errors'
-			\ }
-let g:lightline.component_type = {
-			\ 'linter_errors': 'warning'
-			\ }
-function! LightlineFilename()
-	let filename = expand('%:~:.') !=# '' ? expand('%:~:.') : '[No Name]'
-	let modified = $modified ? ' +' : ''
-	return filename . modified
-endfunction
-
-function! LspHints() abort
-	let sl = ''
-	if luaeval('not vim.tbl_isempty(vim.lsp.buf_get_clients(0))')
-		let sl.=':'
-		let sl.= luaeval("vim.lsp.diagnostic.get_count(0, [[Hint]])")
-	else
-		let sl.=''
-	endif
-	return sl
-endfunction
-
-function! LspWarnings() abort
-	let sl = ''
-	if luaeval('not vim.tbl_isempty(vim.lsp.buf_get_clients(0))')
-		let sl.=' :'
-		let sl.= luaeval("vim.lsp.diagnostic.get_count(0, [[Warn]])")
-	else
-		let sl.=''
-	endif
-	return sl
-endfunction
-
-function! LspErrors() abort
-	let sl =''
-	if luaeval('not vim.tbl_isempty(vim.lsp.buf_get_clients(0))')
-		let sl.=':'
-		let sl.= luaeval("vim.lsp.diagnostic.get_count(0, [[Error]])")
-	else
-		let sl.=''
-	endif
-	return sl
-endfunction
-
-let b:n = 0
-function! Incr()
-	let b:n = b:n + 1
-	return b:n
-endfunction
 
 let g:fzf_colors =
 \ { 'fg':      ['fg', 'Normal'],
@@ -225,6 +169,7 @@ endif
             \ ]
 
 lua require('config')
+lua require('luasnips_config')
 lua require('keymaps')
 lua require('options')
 
@@ -279,3 +224,23 @@ let g:closetag_shortcut = '>'
 let g:closetag_close_shortcut = '<leader>>'
 
 let g:closetag_enable_react_fragment = 1
+
+" " Check if NERDTree is open or active
+" function! IsNERDTreeOpen()
+"   return exists("t:NERDTreeBufName") && (bufwinnr(t:NERDTreeBufName) != -1)
+" endfunction
+
+" " Call NERDTreeFind iff NERDTree is active, current window contains a modifiable
+" " file, and we're not in vimdiff
+" function! SyncTree()
+"   if &modifiable && IsNERDTreeOpen() && strlen(expand('%')) > 0 && !&diff
+"     NERDTreeFind
+"     wincmd p
+"   endif
+" endfunction
+
+" " Highlight currently open buffer in NERDTree
+" autocmd BufRead * call SyncTree()
+"
+" " Start NERDTree and put the cursor back in the other window.
+" autocmd VimEnter * NERDTree | wincmd p
