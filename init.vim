@@ -1,85 +1,65 @@
 call plug#begin('~/.local/share/nvim/plugged')
-Plug 'lewis6991/impatient.nvim'
-Plug 'LionC/nest.nvim'
-Plug 's1n7ax/nvim-terminal'
-Plug 'simnalamburt/vim-mundo'
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-eunuch/'
-Plug 'ludovicchabant/vim-gutentags'
-Plug 'universal-ctags/ctags'
-Plug 'vimwiki/vimwiki/'
-Plug 'lambdalisue/suda.vim/'
-Plug 'vim-scripts/calendar.vim--Matsumoto'
-Plug '907th/vim-auto-save'
-Plug 'jiangmiao/auto-pairs'
-Plug 'neovim/nvim-lspconfig'
-"Plug 'arcticicestudio/nord-vim'
-Plug 'shaunsingh/nord.nvim'
-Plug 'williamboman/nvim-lsp-installer'
-Plug 'tpope/vim-surround'
-Plug 'nvim-lua/lsp-status.nvim'
-"Plug 'puremourning/vimspector'
-"Plug 'itchyny/lightline.vim'
-Plug 'szw/vim-maximizer'
-Plug 'jesseleite/vim-agriculture'
-Plug 'inkarkat/vim-ingo-library'
-Plug 'inkarkat/vim-SpellCheck'
-"Plug 'nvim-treesitter/nvim-treesitter'
-"Plug 'nvim-treesitter/nvim-treesitter-refactor'
-"Plug 'nvim-treesitter/nvim-treesitter-textobjects'
-Plug 'preservim/nerdtree'
-Plug 'hrsh7th/cmp-buffer'
-Plug 'hrsh7th/cmp-path'
-Plug 'hrsh7th/cmp-cmdline'
-Plug 'hrsh7th/nvim-cmp'
-Plug 'hrsh7th/cmp-vsnip'
-Plug 'hrsh7th/vim-vsnip'
-Plug 'hrsh7th/cmp-nvim-lsp'
-Plug 'akinsho/toggleterm.nvim'
-Plug 'jparise/vim-graphql'
-Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
-Plug 'ahmedkhalf/project.nvim'
-Plug 'jremmen/vim-ripgrep'
-"Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-"Plug 'junegunn/fzf.vim'
-Plug 'unblevable/quick-scope'
-Plug 'L3MON4D3/LuaSnip'
+Plug 'lewis6991/impatient.nvim' "Speed up loading Lua modules in Neovim to improve startup time
+Plug 'simnalamburt/vim-mundo' "Visualize the Vim undo tree
+Plug 'tpope/vim-fugitive' "Vim plugin for Git
+Plug 'tpope/vim-commentary' "Use gc to comment stuff
+Plug 'ludovicchabant/vim-gutentags' "Tag plugin
+Plug 'universal-ctags/ctags' "Tag program
+Plug 'vimwiki/vimwiki/' "Personal wiki for Vim
+Plug 'jiangmiao/auto-pairs' "Insert or delete brackets, parenthesis, or quotes in pair
+Plug 'neovim/nvim-lspconfig' "Configs for the Nvim LSP client
+Plug 'williamboman/nvim-lsp-installer' "LSP installer (No longer maintened, replaced by mason.nvim)
+Plug 'tpope/vim-surround' "Provides mappings to easily delete, change, and add surroundings in pairs
+Plug 'nvim-lua/lsp-status.nvim' "Generates statusline components from the built-in LSP client
+Plug 'inkarkat/vim-ingo-library' "Contains common autload functions used by other plugins
+Plug 'inkarkat/vim-SpellCheck' "Populated quickfix-list with all spelling errors found
+Plug 'nvim-treesitter/nvim-treesitter' "Provides syntax highlighting
+Plug 'nvim-treesitter/nvim-treesitter-refactor' "Refactor modules for nvim-treesitter
+Plug 'nvim-treesitter/nvim-treesitter-textobjects' "Syntax aware text-objects
+Plug 'preservim/nerdtree' "File system explorer for Vim editor
+Plug 'hrsh7th/nvim-cmp' "A completion engine plugin for neovim written in Lua
+Plug 'hrsh7th/cmp-buffer' "nvim-cmp source for buffer words
+Plug 'hrsh7th/cmp-path' "nvim-cmp source for filesystem paths
+Plug 'hrsh7th/cmp-cmdline' "nvim-cmp source fo rvim's cmdline
+Plug 'hrsh7th/cmp-nvim-lsp' "nvim-cmp source for neovim's built-in language server client
+Plug 'saadparwaiz1/cmp_luasnip' "Luasnip completion source for nvim-cmp
+Plug 'akinsho/toggleterm.nvim' "Persists and toggles terminals
+Plug 'jparise/vim-graphql' "Provides GraphQL file detection, syntax highlighting, and indentation
+Plug 'ahmedkhalf/project.nvim' "Automatically cd to project directory using nvim LSP
+Plug 'jremmen/vim-ripgrep' "Use RipGrep in Vim to display results in a quickfix list
+Plug 'unblevable/quick-scope' "Highlights first occurence of character to the right of cursor
+Plug 'L3MON4D3/LuaSnip' "Snippet engine
+Plug 'ryanoasis/vim-devicons' "Adds filetype glyphs to various vim plugins
+Plug 'ton/vim-bufsurf' "Enabled surfing through buffers based on viewing history per window
+Plug 'wellle/targets.vim' "Adds various text objects
+Plug 'nvim-lua/plenary.nvim' "All the lua functions he doesn't want to write twice
+Plug 'kyazdani42/nvim-web-devicons' "Lua fork of devicons
+Plug 'folke/trouble.nvim' "A pretty diagnostics, references, telescope results, quickfix, and location list
+Plug 'kana/vim-textobj-user' "Create your own text objects
+Plug 'Julian/vim-textobj-variable-segment' "Provides a single text object for variable segments
+Plug 'romainl/vim-cool' "Disabled search highlighting when done searching
+Plug 'mfussenegger/nvim-dap' "Debug adapter protocol
+Plug 'rcarriga/nvim-dap-ui' "A UI for nvim-dap
+Plug 'karb94/neoscroll.nvim' "Smooth scrolling
+Plug 'weilbith/nvim-code-action-menu' "Pop-up menu for code actions
+Plug 'windwp/nvim-ts-autotag' "Use treesitter to auto close and auto rename html tag
+Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' } "Highly extendable fuzzy finder
+Plug 'benfowler/telescope-luasnip.nvim' "Adds LuaSnip snippet picker to Telescope
+Plug 'nvim-telescope/telescope-file-browser.nvim' "File browser extension for Telescope
+Plug 'nvim-lualine/lualine.nvim' "A Neovim statusline plugin
+
+"No longer needed Plugins
+"Plug 's1n7ax/nvim-terminal'
+"Plug 'ahmedkhalf/lsp-rooter.nvim' "Changes current working directory to project's root directory
+"Plug 'gennaro-tedesco/nvim-peekup' "Dynamically interact with vim registers
+"Plug 'RishabhRD/nvim-lsputils' "Better defaults for nvim-lsp actions
+"Plug 'RishabhRD/popfix'
+"Plug 'RishabhRD/nvim-cheat.sh' "Provides elegant UI and remove complexity of url handling and special symbols for users.
 "Plug 'rafamadriz/friendly-snippets'
-Plug 'saadparwaiz1/cmp_luasnip'
-Plug 'ryanoasis/vim-devicons'
-Plug 'abecodes/tabout.nvim'
-Plug 'RishabhRD/nvim-lsputils'
-Plug 'RishabhRD/popfix'
-Plug 'RishabhRD/nvim-cheat.sh'
-Plug 'kdheepak/tabline.nvim'
-Plug 'ton/vim-bufsurf'
-Plug 'wellle/targets.vim'
-Plug 'thugcee/nvim-map-to-lua'
-Plug 'gennaro-tedesco/nvim-peekup'
-Plug 'nvim-lua/plenary.nvim'
-Plug 'kyazdani42/nvim-web-devicons'
-Plug 'folke/trouble.nvim'
-Plug 'ThePrimeagen/harpoon'
-Plug 'matze/vim-move'
-"Plug 'mhinz/vim-startify'
-Plug 'kana/vim-textobj-user'
-Plug 'Julian/vim-textobj-variable-segment'
-Plug 'ahmedkhalf/lsp-rooter.nvim'
-Plug 'romainl/vim-cool'
-Plug 'mfussenegger/nvim-dap'
-Plug 'rcarriga/nvim-dap-ui'
-Plug 'karb94/neoscroll.nvim'
-Plug 'weilbith/nvim-code-action-menu'
-"Plug 'kosayoda/nvim-lightbulb'
-Plug 'antoinemadec/FixCursorHold.nvim'
-Plug 'alvan/vim-closetag'
-Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
-Plug 'benfowler/telescope-luasnip.nvim'
-Plug 'nvim-lualine/lualine.nvim'
-Plug 'kyazdani42/nvim-web-devicons'
-Plug 'romgrk/barbar.nvim'
-Plug 'nvim-telescope/telescope-file-browser.nvim'
+"Plug 'lambdalisue/suda.vim/' "Read or write files with sudo command
+"Plug 'vim-scripts/calendar.vim--Matsumoto' "Creates calendar window
+"Plug '907th/vim-auto-save' "Automatically saves changes to disk without having to use :W
+"Plug 'tpope/vim-eunuch/' "Vim sugar for Univ shell commands
 
 "Taskwiki
 "Plug 'tools-life/taskwiki'
@@ -93,28 +73,25 @@ Plug 'catppuccin/nvim'
 call plug#end()
 
 set vb t_vb=
-"set noswapfile
+set noswapfile
 
 hi TabLine    gui=NONE guibg=#000000 guifg=#abb2bf    cterm=NONE term=NONE ctermfg=black ctermbg=white
 
-autocmd BufWritePre *.js lua vim.lsp.buf.formatting_sync(nil, 1000)
-autocmd BufWritePre *.jsx lua vim.lsp.buf.formatting_sync(nil, 1000)
-autocmd BufWritePre *.py lua vim.lsp.buf.formatting_sync(nil, 1000)
+autocmd BufWritePre *.js lua vim.lsp.buf.format(nil, 1000)
+autocmd BufWritePre *.jsx lua vim.lsp.buf.format(nil, 1000)
+autocmd BufWritePre *.py lua vim.lsp.buf.format(nil, 1000)
+autocmd BufWritePre *.lua lua vim.lsp.buf.format(nil, 1000)
 autocmd FileChangedRO * echohl WarningMsg | echo "" | echohl None
 autocmd FileChangedShell * echohl WarningMsg | echo "" | echohl None
-"autocmd CursorMoved * set nohlsearch
 autocmd QuickFixCmdPost *grep* cwindow
 
 augroup qs_colors
   autocmd!
   autocmd ColorScheme * highlight QuickScopePrimary guifg=White guibg=Purple gui=underline ctermfg=White cterm=underline
   autocmd ColorScheme * highlight QuickScopeSecondary guifg=White guibg=Purple gui=underline ctermfg=White cterm=underline
-  "autocmd ColorScheme * highlight Search guifg='White' gui=underline ctermfg='#9D00FF' cterm=underline
 augroup END
 
 let loaded_spellfile_plugin = 1
-
-"hi Cursor guifg=#121212 guibg=#afd700
 
 if hostname() == 'LAPTOP-5C92PE9G'
 let g:vimwiki_list = [{'path': 'C:/Users/ELLE/Dropbox/Vimwiki',
@@ -133,97 +110,16 @@ endif
 
 let g:NERDTreeShowHidden = 1
 
-let g:fzf_colors =
-\ { 'fg':      ['fg', 'Normal'],
-  \ 'bg':      ['bg', 'Normal'],
-  \ 'hl':      ['fg', 'Comment'],
-  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
-  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
-  \ 'hl+':     ['fg', 'Statement'],
-  \ 'info':    ['fg', 'PreProc'],
-  \ 'prompt':  ['fg', 'Conditional'],
-  \ 'pointer': ['fg', 'Exception'],
-  \ 'marker':  ['fg', 'Keyword'],
-  \ 'spinner': ['fg', 'Label'],
-  \ 'header':  ['fg', 'Comment'] }
-
-let g:fzf_action = {
-  \ 'ctrl-t': 'tab split',
-  \ 'ctrl-b': 'split',
-  \ 'ctrl-v': 'vsplit',
-  \ 'ctrl-y': {lines -> setreg('*', join(lines, "\n"))}}
-
 if !executable('ctags')
     let g:gutentags_dont_load = 1
 endif
-
-
-    let g:startify_custom_header = [
-            \ '                              ',
-            \ '            __                ',
-            \ '    __  __ /\_\    ___ ___    ',
-            \ '   /\ \/\ \\/\ \ /'' __` __`\ ',
-            \ '   \ \ \_/ |\ \ \/\ \/\ \/\ \ ',
-            \ '    \ \___/  \ \_\ \_\ \_\ \_\',
-            \ '     \/__/    \/_/\/_/\/_/\/_/',
-            \ ]
 
 lua require('config')
 lua require('luasnips_config')
 lua require('keymaps')
 lua require('options')
 
-nnoremap m/ :lua require("harpoon.ui").toggle_quick_menu()<CR>
-nnoremap m. :lua require("harpoon.ui").nav_next()<CR>
-nnoremap mm :lua require("harpoon.mark").add_file()<CR>
-nnoremap m, :lua require("harpoon.ui").nav_prev()<CR>
-nnoremap p "+p<CR>
-
-" filenames like *.xml, *.html, *.xhtml, ...
-" These are the file extensions where this plugin is enabled.
-"
-let g:closetag_filenames = '*.html,*.xhtml,*.phtml'
-
-" filenames like *.xml, *.xhtml, ...
-" This will make the list of non-closing tags self-closing in the specified files.
-"
-let g:closetag_xhtml_filenames = '*.xhtml,*.jsx,*.js'
-
-" filetypes like xml, html, xhtml, ...
-" These are the file types where this plugin is enabled.
-"
-let g:closetag_filetypes = 'html,xhtml,phtml'
-
-" filetypes like xml, xhtml, ...
-" This will make the list of non-closing tags self-closing in the specified files.
-"
-let g:closetag_xhtml_filetypes = 'xhtml,jsx,js'
-
-" integer value [0|1]
-" This will make the list of non-closing tags case-sensitive (e.g. `<Link>` will be closed while `<link>` won't.)
-"
-let g:closetag_emptyTags_caseSensitive = 1
-
-" dict
-" Disables auto-close if not in a "valid" region (based on filetype)
-"
-let g:closetag_regions = {
-    \ 'typescript.tsx': 'jsxRegion,tsxRegion',
-    \ 'javascript.jsx': 'jsxRegion',
-    \ 'javascript.js': 'jsxRegion',
-    \ 'typescriptreact': 'jsxRegion,tsxRegion',
-    \ 'javascriptreact': 'jsxRegion',
-    \ }
-
-" Shortcut for closing tags, default is '>'
-"
-let g:closetag_shortcut = '>'
-
-" Add > at current position without closing the current tag, default is ''
-"
-let g:closetag_close_shortcut = '<leader>>'
-
-let g:closetag_enable_react_fragment = 1
+nnoremap p "+p
 
 " " Check if NERDTree is open or active
 " function! IsNERDTreeOpen()

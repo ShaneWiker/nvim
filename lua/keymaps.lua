@@ -1,9 +1,9 @@
 local function map(mode, lhs, rhs, opts)
-  local options = { noremap = true, silent = true }
-  if opts then
-    options = vim.tbl_extend('force', options, opts)
-  end
-  vim.api.nvim_set_keymap(mode, lhs, rhs, options)
+	local options = { noremap = true, silent = true }
+	if opts then
+		options = vim.tbl_extend('force', options, opts)
+	end
+	vim.api.nvim_set_keymap(mode, lhs, rhs, options)
 end
 
 vim.g.mapleader = ' '
@@ -11,247 +11,176 @@ vim.g.mapleader = ' '
 local keymap = vim.api.nvim_set_keymap
 local opts = { noremap = true, silent = true }
 
-keymap("n", "<Leader>bb", ":split<CR>", opts)
-keymap("n", "<Leader>bv", ":vsplit<CR>", opts)
-keymap("n", "<Leader>bx", ":bd!<CR>", opts)
-keymap("n", "<leader>bd", ":%bd!<CR>", opts)
-keymap("n", "<leader>be", "<C-w>=<CR>", opts)
-keymap("n", "<leader>bn", ":sp new<CR>", opts)
-keymap("n", "<leader>bo", "<c-w>o<CR>", opts)
-keymap("n", "<leader>bh", "<c-w>H<CR>", opts)
-keymap("n", "<leader>bj", "<c-w>J<CR>", opts)
-keymap("n", "<leader>bk", "<c-w>K<CR>", opts)
-keymap("n", "<leader>bl", "<c-w>L<CR>", opts)
-keymap("n", "<leader>cj", ":Cheat js <CR>", opts)
-keymap("n", "<leader>cs", ":Cheat <CR>", opts)
-keymap("n", "<Leader>db", ":lua require'dap'.toggle_breakpoint()<CR>", opts)
-keymap("n", "<Leader>dd", ":lua require'dap'.continue()<CR>", opts)
-keymap("n", "<Leader>do", ":lua require'dap'.step_over()<CR>", opts)
-keymap("n", "<Leader>di", ":lua require'dap'.step_into()<CR>", opts)
-keymap("n", "<Leader>ds", ":lua require'dap'.repl.open()<CR>", opts)
-keymap("n", "<Leader>ds", ":lua require'dap'.repl.open()<CR>", opts)
+--Buffers
+keymap("n", "<Leader>bb", ":split<CR>", opts) --Split buffer horizontally
+keymap("n", "<Leader>bv", ":vsplit<CR>", opts) --Split buffer vertically
+keymap("n", "<Leader>bx", ":bd!<CR>", opts) --Delete buffer
+keymap("n", "<leader>bd", ":%bd!<CR>", opts) --Delete all buffers
+keymap("n", "<leader>bn", ":sp new<CR>", opts) --New buffer
 
-keymap("n", "<space>ff", ":Telescope file_browser<CR>", opts)
+--Dap
+keymap("n", "<Leader>dd", ":lua require'dap'.continue()<CR>", opts) --Dap continue
+keymap("n", "<Leader>db", ":lua require'dap'.toggle_breakpoint()<CR>", opts) -- Dap toggle breakpoint
+keymap("n", "<Leader>do", ":lua require'dap'.step_over()<CR>", opts) --Dap step over
+keymap("n", "<Leader>di", ":lua require'dap'.step_into()<CR>", opts) --Dap step into
+keymap("n", "<Leader>ds", ":lua require'dap'.repl.open()<CR>", opts) --Dap open repl
+keymap("n", "<Leader>ds", ":lua require'dap'.repl.open()<CR>", opts) --Dap open repl
 
-keymap("n", "<leader>ga", ":Git add .<CR>", opts)
-keymap("n", "<leader>gb", ":Git branch -M ", opts)
-keymap("n", "<leader>gc", ":Git commit -m ", opts)
-keymap("n", "<leader>gi", ":Git init<CR>", opts)
-keymap("n", "<leader>gr", ":Git remote add origin https://github.com/ShaneWiker/", opts)
-keymap("n", "<leader>gp", ":Git push<CR>", opts)
-keymap("n", "<leader>gl", ":Git pull<CR>", opts)
+--Git
+keymap("n", "<leader>ga", ":Git add .<CR>", opts) --Git add all
+keymap("n", "<leader>gb", ":Git branch -M ", opts) --Git select branch
+keymap("n", "<leader>gc", ":Git commit -m ", opts) --Git commit
+keymap("n", "<leader>gi", ":Git init<CR>", opts) --Git initialize repo
+keymap("n", "<leader>gr", ":Git remote add origin https://github.com/ShaneWiker/", opts) --Git add origin
+keymap("n", "<leader>gl", ":Git pull<CR>", opts) --Git pull
+keymap("n", "<leader>gp", ":Git push<CR>", opts) --Git push
+keymap("n", "<leader>gs", ":Git status<CR>", opts) --Git pull
 
-keymap("n", "gb", "<C-^><CR>", opts)
-keymap("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
-keymap("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
-keymap("n", "gh", "<cmd>CodeActionMenu<CR>", opts)
-keymap("n", "gf", "<C-]><CR>", opts)
-keymap("n", "<leader>gg", ":terminal git pull", opts)
-keymap("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
-keymap("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
-keymap("n", "<leader>gs", ":G<CR>", opts)
-keymap("n", "<leader>sr", ":%s/", opts)
-keymap("n", "<leader>j", ":VimwikiFollowLink<CR>", opts)
-keymap("n", "<leader>J", "J", opts)
-keymap("n", "<leader>k", ":VimwikiGoBackLink<CR>", opts)
-keymap("n", "<leader>K", "K", opts)
-keymap("n", "<Leader>li", ":LspInfo<CR>", opts)
-keymap("n", "<Leader>ms", ":SudaWrite<CR>", opts)
-keymap("n", "<Leader>mw", ":w!<CR>", opts)
-keymap("n", "<Leader>ma", ":w ", opts)
-keymap("n", "<Leader>mc", ":wqa<CR>", opts)
-keymap("n", "<Leader>md", ":call delete(expand('%'))<CR>", opts)
-keymap("n", "<Leader>mg", ":MarksListGlobal<CR>", opts)
---vim.api.nvim_set_keymap("n", "<Leader>ma", ":MarksListAll<CR>", { noremap = true, })
-keymap("n", "<Leader>mq", ":q<CR>", opts)
-keymap("n", "<Leader>mx", ":q!<CR>", opts)
-keymap("n", "<leader>mr", ":Rename! ", opts)
-keymap("n", "<Leader>mm", ":set modifiable<CR>", opts)
-keymap("n", "<Leader>mn", ":e %:h/", opts)
-keymap("n", "<Leader>ms", ":MarksToggleSigns<CR>", opts)
-keymap("n", "<Leader>nt", ":NERDTree<CR>", opts)
-keymap("n", "<leader>pi", ":PlugInstall<CR>", opts)
+--Go to
+keymap("n", "ga", "<cmd>CodeActionMenu<CR>", opts) --Go to code actions
+keymap("n", "gb", "<C-^><CR>", opts) --Go back
+keymap("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts) --Go to definition
+keymap("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts) --Go to declaration
+keymap("n", "gf", "<C-]><CR>", opts) --Go to tag
+keymap("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts) --Go to implementation
+keymap("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts) --Go to references
 
+keymap("n", "<leader>sr", ":%s/", opts) --Search and replace
+
+--LSP
+keymap("n", "<Leader>li", ":LspInfo<CR>", opts) --LSP Info
+
+--File management
+keymap("n", "<Leader>ma", ":w ", opts) --Menu save as
+keymap("n", "<Leader>mc", ":wqa<CR>", opts) --Menu write and quit
+keymap("n", "<Leader>md", ":call delete(expand('%'))<CR>", opts) --Menu delete
+keymap("n", "<Leader>mq", ":q<CR>", opts) --Menu quit
+keymap("n", "<Leader>mw", ":w!<CR>", opts) --Menu write
+keymap("n", "<Leader>mx", ":q!<CR>", opts) --Menu quit force
+keymap("n", "<leader>mr", ":Rename! ", opts) --Menu rename
+
+--NERDTree
+keymap("n", "<Leader>nt", ":NERDTree<CR>", opts) --NERDTree
+
+--Open
 if vim.fn.hostname() == "amethyst" then
-keymap("n", "<leader>oa", ":e /home/thenomadicaspie/gfc/project/solid-leads-api/<CR>", opts)
-keymap("n", "<leader>oi", ":e /home/thenomadicaspie/.config/nvim/init.vim<CR>", opts)
-keymap("n", "<leader>ol", ":e /home/thenomadicaspie/gfc/project/solid-leads/<CR>", opts)
-keymap("n", "<leader>ok", ":e /home/thenomadicaspie/.config/nvim/lua/keymaps.lua<CR>", opts)
-keymap("n", "<leader>oc", ":e /home/thenomadicaspie/.config/nvim/lua/config.lua<CR>", opts)
-keymap("n", "<leader>oo", ":e /home/thenomadicaspie/.config/nvim/lua/options.lua<CR>", opts)
-keymap("n", "<leader>od", ":e /home/thenomadicaspie/projects/developer_test_project_react/frontend/src/pages/userDetail.jsx<CR>", opts)
-keymap("n", "<leader>og", ":e /home/thenomadicaspie/gfc/project/<CR>", opts)
-keymap("n", "<leader>ol", ":e /home/thenomadicaspie/.config/nvim/lua/luasnips_config.lua<CR>", opts)
-keymap("n", "<leader>opn", ":e /home/thenomadicaspie/projects/psyche/src/App.js<CR><CR>", opts)
-keymap("n", "<leader>opo", ":e /home/thenomadicaspie/personal/psyche/script.js<CR><CR>", opts)
-keymap("n", "<leader>oss", ":LuaSnipEdit<CR>", opts)
-keymap("n", "<leader>osj", ":e /home/thenomadicaspie/.config/nvim/snippets/snippets/javascript/javascript.json<CR>", opts)
-keymap("n", "<leader>om", ":e /home/thenomadicaspie/gfc/project/marketing-ops-api<CR>", opts)
-keymap("n", "<leader>onc", ":e /home/thenomadicaspie/gfc/project/next.client<CR>", opts)
-keymap("n", "<leader>ond", ":e /home/thenomadicaspie/gfc/project/next.data<CR>", opts)
-
-keymap("n", "<Leader>ott", ":ToggleTerm size=10 direction=horizontal<CR>", opts)
-keymap("n", "<Leader>ot1", ":1ToggleTerm size=10 direction=horizontal<CR>", opts)
-keymap("n", "<Leader>ot2", ":2ToggleTerm size=10<CR>", opts)
-keymap("n", "<Leader>ot3", ":3ToggleTerm size=10<CR> ", opts)
-keymap("n", "<Leader>ot4", ":4ToggleTerm size=10<CR>", opts)
-keymap("n", "<Leader>ot5", ":5ToggleTerm size=40<CR> ", opts)
+	keymap("n", "<leader>oa", ":e /home/thenomadicaspie/gfc/project/solid-leads-api/<CR>", opts)
+	keymap("n", "<leader>oi", ":e /home/thenomadicaspie/.config/nvim/init.vim<CR>", opts)
+	keymap("n", "<leader>ol", ":e /home/thenomadicaspie/gfc/project/solid-leads/<CR>", opts)
+	keymap("n", "<leader>ok", ":e /home/thenomadicaspie/.config/nvim/lua/keymaps.lua<CR>", opts)
+	keymap("n", "<leader>oc", ":e /home/thenomadicaspie/.config/nvim/lua/config.lua<CR>", opts)
+	keymap("n", "<leader>oo", ":e /home/thenomadicaspie/.config/nvim/lua/options.lua<CR>", opts)
+	keymap("n", "<leader>od",
+		":e /home/thenomadicaspie/projects/developer_test_project_react/frontend/src/pages/userDetail.jsx<CR>", opts)
+	keymap("n", "<leader>og", ":e /home/thenomadicaspie/gfc/project/<CR>", opts)
+	keymap("n", "<leader>ol", ":e /home/thenomadicaspie/.config/nvim/lua/luasnips_config.lua<CR>", opts)
+	keymap("n", "<leader>opn", ":e /home/thenomadicaspie/projects/psyche/src/App.js<CR><CR>", opts)
+	keymap("n", "<leader>opo", ":e /home/thenomadicaspie/personal/psyche/script.js<CR><CR>", opts)
+	keymap("n", "<leader>om", ":e /home/thenomadicaspie/gfc/project/marketing-ops-api<CR>", opts)
+	keymap("n", "<leader>onc", ":e /home/thenomadicaspie/gfc/project/next.client<CR>", opts)
+	keymap("n", "<leader>ond", ":e /home/thenomadicaspie/gfc/project/next.data<CR>", opts)
 end
 
 if vim.fn.hostname() == "TheNo" then
-keymap("n", "<leader>oa", ":e C:\\Users\\ELLE\\Desktop\\Shane\\projects\\dev_agency\\<CR>", opts)
-keymap("n", "<leader>ob", ":e C:\\Users\\ELLE\\Desktop\\Shane\\vs_code\\i_bet_you_wont\\src\\App.js<CR>", opts)
-keymap("n", "<leader>oc", ":e C:\\Users\\TheNo\\AppData\\Local\\nvim\\lua\\config.lua<CR>", opts)
-keymap("n", "<leader>oe", ":e C:\\Users\\ELLE\\Desktop\\Shane\\projects\\elle_progress\\<CR>", opts)
-keymap("n", "<leader>oe", ":e C:\\Users\\ELLE\\Desktop\\Shane\\projects\\elle_progress\\<CR>", opts)
-keymap("n", "<leader>ok", ":e C:\\Users\\TheNo\\AppData\\Local\\nvim\\lua\\keymaps.lua<CR>", opts)
-keymap("n", "<leader>oo", ":e C:\\Users\\TheNo\\AppData\\Local\\nvim\\lua\\options.lua<CR>", opts)
-keymap("n", "<leader>ot", ":e C:\\Users\\TheNo\\Desktop\\Shane\\projects\\curd_react\\frontend<CR>", opts)
-keymap("n", "<leader>or", ":e C:\\Users\\ELLE\\Desktop\\Shane\\projects\\rs_challenge_dev\\<CR>", opts)
-keymap("n", "<leader>os", ":e C:\\Users\\ELLE\\AppData\\Local\\nvim\\friendly_snippets\\snippets\\javascript\\<CR>", opts)
-keymap("n", "<leader>ou", ":e C:\\Users\\ELLE\\AppData\\Local\\nvim\\snippets\\<CR>", opts)
+	keymap("n", "<leader>oa", ":e C:\\Users\\ELLE\\Desktop\\Shane\\projects\\dev_agency\\<CR>", opts)
+	keymap("n", "<leader>ob", ":e C:\\Users\\ELLE\\Desktop\\Shane\\vs_code\\i_bet_you_wont\\src\\App.js<CR>", opts)
+	keymap("n", "<leader>oc", ":e C:\\Users\\TheNo\\AppData\\Local\\nvim\\lua\\config.lua<CR>", opts)
+	keymap("n", "<leader>oe", ":e C:\\Users\\ELLE\\Desktop\\Shane\\projects\\elle_progress\\<CR>", opts)
+	keymap("n", "<leader>oe", ":e C:\\Users\\ELLE\\Desktop\\Shane\\projects\\elle_progress\\<CR>", opts)
+	keymap("n", "<leader>ok", ":e C:\\Users\\TheNo\\AppData\\Local\\nvim\\lua\\keymaps.lua<CR>", opts)
+	keymap("n", "<leader>oo", ":e C:\\Users\\TheNo\\AppData\\Local\\nvim\\lua\\options.lua<CR>", opts)
+	keymap("n", "<leader>ot", ":e C:\\Users\\TheNo\\Desktop\\Shane\\projects\\curd_react\\frontend<CR>", opts)
+	keymap("n", "<leader>or", ":e C:\\Users\\ELLE\\Desktop\\Shane\\projects\\rs_challenge_dev\\<CR>", opts)
+	keymap("n", "<leader>os", ":e C:\\Users\\ELLE\\AppData\\Local\\nvim\\friendly_snippets\\snippets\\javascript\\<CR>",
+		opts)
+	keymap("n", "<leader>ou", ":e C:\\Users\\ELLE\\AppData\\Local\\nvim\\snippets\\<CR>", opts)
 end
 
-keymap("n", "<leader>pa", ":ASOn<CR>", opts)
-keymap("n", "<leader>pA", ":ASOff<CR>", opts)
-keymap("n", "<leader>pi", ":PlugInstall<CR>", opts)
-keymap("n", "<leader>ps", ":PlugStatus<CR>", opts)
-keymap("n", "<leader>qs", "<plug>(QuickScopeToggle)", opts)
-keymap("x", "<leader>qs", "<plug>(QuickScopeToggle)", opts)
-keymap("n", "<leader>rg", ":Rg ", opts)
-keymap("n", "<leader>ri", ":%s/X/\\=Incr()<CR>", opts)
-keymap("n", "<leader>rx", ":%s/XXX/", opts)
-keymap("n", "<leader>sb", ":ls<CR>:b<space>", opts)
-keymap("n", "<leader>sl", ":luafile %<CR>", opts)
-keymap("n", "<leader>sm", ":marks<CR>", opts)
-keymap("n", "<leader>sv", ":source $MYVIMRC<CR>", opts)
+--Plug
+keymap("n", "<leader>pi", ":PlugInstall<CR>", opts) --Plug Install
+keymap("n", "<leader>ps", ":PlugStatus<CR>", opts) --Plug Status
 
-keymap("n", "<leader>tb", ":Telescope buffers<CR>", opts)
-keymap("n", "<leader>tf", ":Telescope find_files<CR>", opts)
-keymap("n", "<leader>tg", ":Telescope live_grep<CR>", opts)
-keymap("n", "<leader>th", ":Telescope help_tags<CR>", opts)
-keymap("n", "<leader>tl", ":Telescope luasnip<CR>", opts)
-keymap("n", "<leader>tq", ":Telescope builtin_help_tags<CR>", opts)
-keymap("n", "<leader>ts", ":Telescope grep_string<CR>", opts)
+--Snippets
+keymap("n", "<leader>se", "<cmd>LuaSnipEdit<cr>", opts) --Edit LuaSnip
+keymap("n", "<leader>sj", ":e /home/thenomadicaspie/.config/nvim/snippets/snippets/javascript/javascript.json<CR>", opts)
 
---vim.api.nvim_set_keymap("n", "<leader>tc", ":tabc<CR>", { noremap = true, })
---vim.api.nvim_set_keymap("n", "<leader>tc", ":tabc<CR>", { noremap = true, })
---vim.api.nvim_set_keymap("n", "<leader>to", ":tabo<CR>", { noremap = true, })
---vim.api.nvim_set_keymap("n", "<leader>tr", ":TroubleToggle<CR>", { })
---vim.api.nvim_set_keymap("n", "<leader>ta", ":TWAdd<CR>", { noremap = true, })
---vim.api.nvim_set_keymap("n", "<leader>td", ":TWComplete<CR>", { noremap = true, })
---vim.api.nvim_set_keymap("n", "<leader>te", ":TWEditTaskrc<CR>", { noremap = true, })
---vim.api.nvim_set_keymap("n", "<leader>tw", ":TW<CR>", { noremap = true, })
+--Source
+keymap("n", "<leader>sl", ":luafile %<CR>", opts) --Source lua
+keymap("n", "<leader>sv", ":source $MYVIMRC<CR>", opts) --Source vim
 
-keymap("n", "<leader>uu", ":MundoToggle<CR>", opts)
-keymap("n", "<leader>wc", ":Calendar<CR>", opts)
-keymap("n", "<leader>wd", "<Plug>VimwikiDeleteFile", opts)
-keymap("n", "<leader>wg", "<Plug>VimwikiDiaryGenerateLinks", opts)
-keymap("n", "<leader>wh", "<Plug>VimwikiDecrementListItem", opts)
-keymap("n", "<leader>wl", "<Plug>VimwikiIncrementListItem", opts)
-keymap("n", "<leader>wn", "<Plug>VimwikiMakeDiaryNote", opts)
-keymap("n", "<leader>wt", "<Plug>VimwikiMakeTomorrowDiaryNote", opts)
-keymap("n", "<leader>ww", ":VimwikiIndex<CR>", opts)
-keymap("n", "<leader>wy", "<Plug>VimwikiMakeYesterdayDiaryNote<CR>", opts)
-keymap("n", "<leader>w,", "<Plug>VimwikiDiaryPrevDay", opts)
-keymap("n", "<leader>w.", "<Plug>VimwikiDiaryNextDay", opts)
-keymap("n", "<leader>:", "@:", opts)
-keymap("n", "<leader>@", "@@", opts)
-keymap("n", "<leader>[", "[{", opts)
-keymap("n", "<leader>]", "]}", opts)
-keymap("n", "<leader>/", "<Plug>tgRawSearch", opts)
-keymap("n", "<leader>ia", "gg=G", opts)
+--Telescope
+keymap("n", "<leader>tb", ":Telescope buffers<CR>", opts) --Telescope buffers
+keymap("n", "<leader>tf", ":Telescope find_files<CR>", opts) --Telescope files
+keymap("n", "<leader>tg", ":Telescope live_grep<CR>", opts) --Telescope grep
+keymap("n", "<leader>th", ":Telescope help_tags<CR>", opts) --Telescope help
+keymap("n", "<leader>tl", ":Telescope luasnip<CR>", opts) --Telescope Luasnip
+keymap("n", "<leader>ts", ":Telescope grep_string<CR>", opts) --Telescope string
+keymap("n", "<space>tt", ":Telescope file_browser<CR>", opts) --Telescope show file browser
 
---vim.api.nvim_set_keymap("n", "<A-,>", ":bprevious<CR>", { noremap = true, })
---vim.api.nvim_set_keymap("n", "<A-.>", ":bnext<CR>", { noremap = true, })
---vim.api.nvim_set_keymap("n", "<A-k>", ":call vimspector#StepOut()<CR>", { })
---vim.api.nvim_set_keymap("n", "<A-j>", ":call vimspector#StepOver()<CR>", { })
---
--- Move to previous/next
-keymap('n', '<A-,>', '<Cmd>BufferPrevious<CR>', opts)
-keymap('n', '<A-.>', '<Cmd>BufferNext<CR>', opts)
-keymap('n', '<A-<>', '<Cmd>BufferMovePrevious<CR>', opts)
-keymap('n', '<A->>', '<Cmd>BufferMoveNext<CR>', opts)
-keymap('n', '<A-1>', '<Cmd>BufferGoto 1<CR>', opts)
-keymap('n', '<A-2>', '<Cmd>BufferGoto 2<CR>', opts)
-keymap('n', '<A-3>', '<Cmd>BufferGoto 3<CR>', opts)
-keymap('n', '<A-4>', '<Cmd>BufferGoto 4<CR>', opts)
-keymap('n', '<A-5>', '<Cmd>BufferGoto 5<CR>', opts)
-keymap('n', '<A-6>', '<Cmd>BufferGoto 6<CR>', opts)
-keymap('n', '<A-7>', '<Cmd>BufferGoto 7<CR>', opts)
-keymap('n', '<A-8>', '<Cmd>BufferGoto 8<CR>', opts)
-keymap('n', '<A-9>', '<Cmd>BufferGoto 9<CR>', opts)
-keymap('n', '<A-0>', '<Cmd>BufferLast<CR>', opts)
-keymap('n', '<A-b>', '<Cmd>BufferPick<CR>', opts)
-keymap('n', '<A-c>', '<Cmd>BufferClose<CR>', opts)
-vim.api.nvim_set_keymap("n", "<Leader><A>", ":tabe<CR>", opts)
-keymap('n', '<A-p>', '<Cmd>BufferPin<CR>', opts)
+--Mundo
+keymap("n", "<leader>uu", ":MundoToggle<CR>", opts) --Uses vim-mundo to visualize undo tree
 
-keymap("n", "<A-l>", ":call vimspector#StepInto()<CR>", { })
-keymap("n", "<A-h>", ":call vimspector#Continue()<CR>", { })
+--Vimwiki
+keymap("n", "<leader>j", ":VimwikiFollowLink<CR>", opts) --Vimwiki follow link
+keymap("n", "<leader>k", ":VimwikiGoBackLink<CR>", opts) --Vimwiki go back
+keymap("n", "<leader>wd", "<Plug>VimwikiDeleteFile", opts) --Vimwiki delete file
+keymap("n", "<leader>ww", ":VimwikiIndex<CR>", opts) --Vimwiki index
 
-keymap("n", "<A-S-j>", "<C-d>", { })
-keymap("n", "<A-S-k>", "<C-u>", { })
+-- Buffers
+keymap('n', '<A-,>', '<Cmd>BufSurfBack<CR>', opts) --Go to previous buffer
+keymap('n', '<A-.>', '<Cmd>BufSurfForward<CR>', opts) --Go to next buffer
+keymap('n', '<A-l>', '<Cmd>BufSurfList<CR>', opts) --Show all buffers
+keymap("n", "<C-h>", "<C-w>h", opts) --Go to left buffer
+keymap("i", "<C-h>", "<C-w>h", opts) --Go to left buffer
+keymap("n", "<C-j>", "<C-w>j", opts) --Go to right buffer
+keymap("i", "<C-j>", "<C-w>j", opts) --Go to right buffer
+keymap("n", "<C-k>", "<C-w>k", opts) --Go to top buffer
+keymap("i", "<C-k>", "<C-w>k", opts) --Go to top buffer
+keymap("n", "<C-l>", "<C-w>l", opts) --Go to bottom buffer
+keymap("i", "<C-l>", "<C-w>l", opts) --Go to bottom buffer
+keymap("n", "<C-A-h>", ":vertical resize -5<CR>", opts) --Resize buffer vertically down
+keymap("n", "<C-A-l>", ":vertical resize +5<CR>", opts) --Resize buffer vertically up
+keymap("n", "<C-A-j>", ":resize -5<CR>", opts) --Resize buffer horizontally left
+keymap("n", "<C-A-k>", ":resize +5<CR>", opts) --Resize buffer horizontally right
+keymap("n", "<up>", "<C-w><up>", opts) --Go to top buffer
+keymap("n", "<down>", "<C-w><down>", opts) --Go to bottom buffer
+keymap("n", "<left>", "<C-w><left>", opts) --Go to left buffer
+keymap("n", "<right>", "<C-w><right>", opts) --Go to right buffer
 
-keymap("n", "<c-a>", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
---vim.api.nvim_set_keymap("n", "<c-d>", "<cmd>lua vim.lsp.buf.hover()<CR>", { silent = true, noremap = true, })
-keymap("n", "<C-h>", "<C-w>h", opts)
-keymap("i", "<C-h>", "<C-w>h", opts)
-keymap("n", "<C-j>", "<C-w>j", opts)
-keymap("i", "<C-j>", "<C-w>j", opts)
-keymap("n", "<C-k>", "<C-w>k", opts)
-keymap("i", "<C-k>", "<C-w>k", opts)
-keymap("n", "<C-l>", "<C-w>l", opts)
-keymap("i", "<C-l>", "<C-w>l", opts)
-keymap("n", "<C-p>", ":terminal {start C:\\Users\\ELLE\\Desktop\\Shane\\music\\elle_1.ly}", opts)
-keymap("n", "<c-x>", "<cmd>lua vim.diagnostic.goto_next()<CR>", opts)
-keymap("n", "<c-z>", "<cmd>lua vim.diagnostic.goto_prev()<CR>", opts)
-keymap("i", "<c-l>", "<cmd>lua vim.diagnostic.goto_prev()<CR>", opts)
+--Diagnostic
+keymap("n", "<C-x>", "<cmd>lua vim.diagnostic.goto_next()<CR>", opts) --Go to next diagnostic
+keymap("n", "<C-z>", "<cmd>lua vim.diagnostic.goto_prev()<CR>", opts) --Go to previous diagnostic
 
-keymap("i", "<C-E>", "<Plug>luasnip-next-choice", opts)
-keymap("s", "<C-E>", "<Plug>luasnip-next-choice", opts)
+--Quick fix
+keymap("i", "<C-l>", ":TroubleToggle<CR>", opts) --Toggle Quick Fix
+keymap("i", "<C-r>", ":TroubleRefresh<CR>", opts) --Refresh Quick Fix
 
-keymap("s", "<Tab>", "<cmd>lua require('luasnip').jump(1)<Cr>", opts)
-keymap("i", "<Tab>", "<Plug>luasnip-expand-or-jump", opts)
-keymap("i", "<S-Tab>", "<cmd>lua require'luasnip'.jump(-1)<Cr>", opts)
-keymap("s", "<S-Tab>", "<cmd>lua require('luasnip').jump(-1)<Cr>", opts)
+--LuaSnip
+keymap("i", "<C-E>", "<Plug>luasnip-next-choice", opts) --Go to next snippet choice
+keymap("s", "<C-E>", "<Plug>luasnip-next-choice", opts) --Go to previous snippet choice
+keymap("s", "<Tab>", "<cmd>lua require('luasnip').jump(1)<Cr>", opts) --Go to next snippet
+keymap("i", "<Tab>", "<Plug>luasnip-expand-or-jump", opts) --Expand snippet
+keymap("i", "<S-Tab>", "<cmd>lua require'luasnip'.jump(-1)<Cr>", opts) --Go to previous snippet
+keymap("s", "<S-Tab>", "<cmd>lua require('luasnip').jump(-1)<Cr>", opts) --Go to previous snippet
 
-keymap("n", "<C-A-h>", ":vertical resize -5<CR>", opts)
-keymap("n", "<C-A-l>", ":vertical resize +5<CR>", opts)
-keymap("n", "<C-A-j>", ":resize -5<CR>", opts)
-keymap("n", "<C-A-k>", ":resize +5<CR>", opts)
+--Vim remaps
+keymap("i", "jk", "<esc>", opts) --Escape
+keymap("v", "J", "5j", opts) --Go down 5 lines
+keymap("n", "J", "5j", opts) --Go down 5 lines
+keymap("v", "K", "5k", opts) --Go up 5 lines
+keymap("n", "K", "5k", opts) --Go up 5 lines
+keymap("n", "n", "nzz", opts) --Next
+keymap("n", "N", "Nzz", opts) --Previous
+keymap("n", "Y", "y$", opts) --Yank to end of line
+keymap("n", "<leader>J", "J", opts) --Combine line below
 
-keymap("n", "<up>", "<C-w><up>", opts)
-keymap("n", "<down>", "<C-w><down>", opts)
-keymap("n", "<left>", "<C-w><left>", opts)
-keymap("n", "<right>", "<C-w><right>", opts)
+--Spell check
+keymap("", "<F5>", ":setlocal spell!<CR>", opts) --Show spell check
 
-keymap("n", "cm", ":ConvertMapToLua<CR>", opts)
-keymap("n", "D", "\\\"_d", opts)
-keymap("n", "g*", "g*zz", opts)
-keymap("n", "g#", "g#zz", opts)
-keymap("i", "jk", "<esc>", opts)
-keymap("v", "J", "5j", opts)
-keymap("n", "J", "5j", opts)
-keymap("v", "K", "5k", opts)
-keymap("n", "K", "5k", opts)
-keymap("n", "n", "nzz", opts)
-keymap("n", "N", "Nzz", opts)
-keymap("n", "Y", "y$", opts)
-
-keymap("n", "*", "*zz", opts)
-keymap("n", "#", "#zz", opts)
-keymap("", "<F5>", ":setlocal spell!<CR>", opts)
-
-vim.keymap.set(
-  'n',
-  '<leader>cc', -- e.g. '<leader>c`
-  function()
-    vim.cmd('term curl ' .. vim.fn.getreg('+'):gsub('\n', ''))
-  end,
-  {}
-)
-
--- More Settings --
-
-vim.keymap.set("n", "<Leader><CR>", "<cmd>LuaSnipEdit<cr>", opts)
+--Terminal
+keymap("n", "<Leader><CR>", ":ToggleTerm size=10 direction=horizontal<CR>", opts) --Open terminal
+keymap("n", "<Leader>1<CR>", ":1ToggleTerm size=10 direction=horizontal<CR>", opts) --Open terminal 1
+keymap("n", "<Leader>2<CR>", ":2ToggleTerm size=10<CR>", opts) --Open terminal 2
+keymap("n", "<Leader>3<CR>", ":3ToggleTerm size=10<CR> ", opts) --Open terminal 3
+keymap("n", "<Leader>4<CR>", ":4ToggleTerm size=10<CR>", opts) --Open terminal 4
+keymap("n", "<Leader>5<CR>", ":5ToggleTerm size=40<CR> ", opts) --Open terminal 5
