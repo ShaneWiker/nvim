@@ -12,7 +12,7 @@ local keymap = vim.api.nvim_set_keymap
 local opts = { noremap = true, silent = true }
 
 --Buffers
-keymap("n", "<Leader>bb", ":split<CR>", opts) --Split buffer horizontally
+keymap("n", "<Leader>bh", ":split<CR>", opts) --Split buffer horizontally
 keymap("n", "<Leader>bv", ":vsplit<CR>", opts) --Split buffer vertically
 keymap("n", "<Leader>bx", ":bd!<CR>", opts) --Delete buffer
 keymap("n", "<leader>bd", ":%bd!<CR>", opts) --Delete all buffers
@@ -31,10 +31,17 @@ keymap("n", "<leader>ga", ":Git add .<CR>", opts) --Git add all
 keymap("n", "<leader>gb", ":Git branch -M ", opts) --Git select branch
 keymap("n", "<leader>gc", ":Git commit -m ", opts) --Git commit
 keymap("n", "<leader>gi", ":Git init<CR>", opts) --Git initialize repo
+vim.api.nvim_set_keymap('n', '<leader>gl',
+	'<cmd>lua require"gitlinker".get_buf_range_url("n", {action_callback = require"gitlinker.actions".open_in_browser})<cr>'
+	, { silent = true })
+vim.api.nvim_set_keymap('v', '<leader>gl',
+	'<cmd>lua require"gitlinker".get_buf_range_url("v", {action_callback = require"gitlinker.actions".open_in_browser})<cr>'
+	, {})
 keymap("n", "<leader>gr", ":Git remote add origin https://github.com/ShaneWiker/", opts) --Git add origin
-keymap("n", "<leader>gl", ":Git pull<CR>", opts) --Git pull
+keymap("n", "<leader>gu", ":Git pull<CR>", opts) --Git pull
 keymap("n", "<leader>gp", ":Git push<CR>", opts) --Git push
 keymap("n", "<leader>gs", ":Git status<CR>", opts) --Git pull
+keymap("n", "<leader>gr", ":Git reset --hard", opts) --Git reset local changes
 
 --Go to
 keymap("n", "ga", "<cmd>CodeActionMenu<CR>", opts) --Go to code actions
@@ -45,18 +52,26 @@ keymap("n", "gf", "<C-]><CR>", opts) --Go to tag
 keymap("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts) --Go to implementation
 keymap("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts) --Go to references
 
-keymap("n", "<leader>sr", ":%s/", opts) --Search and replace
-
 --LSP
 keymap("n", "<Leader>li", ":LspInfo<CR>", opts) --LSP Info
+
+--Bookmarks
+keymap("n", "mm", ":BookmarkToggle<CR>", opts) --Add/remove bookmark at current line
+keymap("n", "mi", ":BookmarkAnnotate ", opts) --Add/edit/remove annotation at current line
+keymap("n", "mn", ":BookmarkNext<CR>", opts) --Jump to next bookmark in buffer
+keymap("n", "mp", ":BookmarkPrev<CR>", opts) --Jump to previous bookmark in buffer
+keymap("n", "ma", ":BookmarkShowAll<CR>", opts) --Show all bookmarks
+keymap("n", "mc", ":BookmarkClear<CR>", opts) --Clear bookmarks in current buffer only
+keymap("n", "mx", ":BookmarkClearAll<CR>", opts) --Clear bookmarks in current buffer only
+keymap("n", "ms", ":BookmarkSave  ", opts) --Save all bookmarks to a file
 
 --File management
 keymap("n", "<Leader>ma", ":w ", opts) --Menu save as
 keymap("n", "<Leader>mc", ":wqa<CR>", opts) --Menu write and quit
 keymap("n", "<Leader>md", ":call delete(expand('%'))<CR>", opts) --Menu delete
-keymap("n", "<Leader>mq", ":q<CR>", opts) --Menu quit
+keymap("n", "<Leader>mq", ":q!<CR>", opts) --Menu quit
 keymap("n", "<Leader>mw", ":w!<CR>", opts) --Menu write
-keymap("n", "<Leader>mx", ":q!<CR>", opts) --Menu quit force
+keymap("n", "<Leader>mx", ":q<CR>", opts) --Menu quit force
 keymap("n", "<leader>mr", ":Rename! ", opts) --Menu rename
 
 --NERDTree
@@ -66,7 +81,7 @@ keymap("n", "<Leader>nt", ":NERDTree<CR>", opts) --NERDTree
 if vim.fn.hostname() == "amethyst" then
 	keymap("n", "<leader>oa", ":e /home/thenomadicaspie/gfc/project/solid-leads-api/<CR>", opts)
 	keymap("n", "<leader>oi", ":e /home/thenomadicaspie/.config/nvim/init.vim<CR>", opts)
-	keymap("n", "<leader>ol", ":e /home/thenomadicaspie/gfc/project/solid-leads/<CR>", opts)
+	--keymap("n", "<leader>ol", ":e /home/thenomadicaspie/gfc/project/solid-leads/<CR>", opts)
 	keymap("n", "<leader>ok", ":e /home/thenomadicaspie/.config/nvim/lua/keymaps.lua<CR>", opts)
 	keymap("n", "<leader>oc", ":e /home/thenomadicaspie/.config/nvim/lua/config.lua<CR>", opts)
 	keymap("n", "<leader>oo", ":e /home/thenomadicaspie/.config/nvim/lua/options.lua<CR>", opts)
@@ -79,6 +94,7 @@ if vim.fn.hostname() == "amethyst" then
 	keymap("n", "<leader>om", ":e /home/thenomadicaspie/gfc/project/marketing-ops-api<CR>", opts)
 	keymap("n", "<leader>onc", ":e /home/thenomadicaspie/gfc/project/next.client<CR>", opts)
 	keymap("n", "<leader>ond", ":e /home/thenomadicaspie/gfc/project/next.data<CR>", opts)
+	keymap("n", "<leader>osp", ":e /home/thenomadicaspie/scripts/psyche_workspace.sh<CR>", opts)
 end
 
 if vim.fn.hostname() == "TheNo" then
@@ -130,14 +146,14 @@ keymap("n", "<leader>ww", ":VimwikiIndex<CR>", opts) --Vimwiki index
 keymap('n', '<A-,>', '<Cmd>BufSurfBack<CR>', opts) --Go to previous buffer
 keymap('n', '<A-.>', '<Cmd>BufSurfForward<CR>', opts) --Go to next buffer
 keymap('n', '<A-l>', '<Cmd>BufSurfList<CR>', opts) --Show all buffers
-keymap("n", "<C-h>", "<C-w>h", opts) --Go to left buffer
-keymap("i", "<C-h>", "<C-w>h", opts) --Go to left buffer
-keymap("n", "<C-j>", "<C-w>j", opts) --Go to right buffer
-keymap("i", "<C-j>", "<C-w>j", opts) --Go to right buffer
-keymap("n", "<C-k>", "<C-w>k", opts) --Go to top buffer
-keymap("i", "<C-k>", "<C-w>k", opts) --Go to top buffer
-keymap("n", "<C-l>", "<C-w>l", opts) --Go to bottom buffer
-keymap("i", "<C-l>", "<C-w>l", opts) --Go to bottom buffer
+-- keymap("n", "<C-h>", "<C-w>h", opts) --Go to left buffer
+-- keymap("i", "<C-h>", "<C-w>h", opts) --Go to left buffer
+-- keymap("n", "<C-j>", "<C-w>j", opts) --Go to right buffer
+-- keymap("i", "<C-j>", "<C-w>j", opts) --Go to right buffer
+-- keymap("n", "<C-k>", "<C-w>k", opts) --Go to top buffer
+-- keymap("i", "<C-k>", "<C-w>k", opts) --Go to top buffer
+-- keymap("n", "<C-l>", "<C-w>l", opts) --Go to bottom buffer
+-- keymap("i", "<C-l>", "<C-w>l", opts) --Go to bottom buffer
 keymap("n", "<C-A-h>", ":vertical resize -5<CR>", opts) --Resize buffer vertically down
 keymap("n", "<C-A-l>", ":vertical resize +5<CR>", opts) --Resize buffer vertically up
 keymap("n", "<C-A-j>", ":resize -5<CR>", opts) --Resize buffer horizontally left
@@ -173,6 +189,12 @@ keymap("n", "n", "nzz", opts) --Next
 keymap("n", "N", "Nzz", opts) --Previous
 keymap("n", "Y", "y$", opts) --Yank to end of line
 keymap("n", "<leader>J", "J", opts) --Combine line below
+
+--Replace
+keymap("n", "<leader>sf", ":Farf<CR>", opts) --Find and replace
+keymap("v", "<leader>sf", ":Farf<CR>", opts) --Find and replace
+keymap("n", "<leader>sr", ":Farr<CR>", opts) --Find and replace
+keymap("v", "<leader>sr", ":Farr<CR>", opts) --Find and replace
 
 --Spell check
 keymap("", "<F5>", ":setlocal spell!<CR>", opts) --Show spell check

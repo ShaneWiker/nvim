@@ -1,8 +1,9 @@
+"Get nvim-spectre
 call plug#begin('~/.local/share/nvim/plugged')
+Plug 'tpope/vim-commentary' "Use gc to comment stuff
 Plug 'lewis6991/impatient.nvim' "Speed up loading Lua modules in Neovim to improve startup time
 Plug 'simnalamburt/vim-mundo' "Visualize the Vim undo tree
 Plug 'tpope/vim-fugitive' "Vim plugin for Git
-Plug 'tpope/vim-commentary' "Use gc to comment stuff
 Plug 'ludovicchabant/vim-gutentags' "Tag plugin
 Plug 'universal-ctags/ctags' "Tag program
 Plug 'vimwiki/vimwiki/' "Personal wiki for Vim
@@ -47,8 +48,13 @@ Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' } "Highly extendable fuzz
 Plug 'benfowler/telescope-luasnip.nvim' "Adds LuaSnip snippet picker to Telescope
 Plug 'nvim-telescope/telescope-file-browser.nvim' "File browser extension for Telescope
 Plug 'nvim-lualine/lualine.nvim' "A Neovim statusline plugin
+Plug 'ruifm/gitlinker.nvim' "Generate GitHub link from selected code
+Plug 'MattesGroeger/vim-bookmarks' "Create bookmarks
+Plug 'christoomey/vim-tmux-navigator' "tmux navigation
+Plug 'brooth/far.vim' "Quickfix replace
 
 "No longer needed Plugins
+"Plug 'tpope/vim-eunuch' "Gives write privileges
 "Plug 's1n7ax/nvim-terminal'
 "Plug 'ahmedkhalf/lsp-rooter.nvim' "Changes current working directory to project's root directory
 "Plug 'gennaro-tedesco/nvim-peekup' "Dynamically interact with vim registers
@@ -74,6 +80,10 @@ call plug#end()
 
 set vb t_vb=
 set noswapfile
+set noreadonly
+
+"set background=dark
+"set t_Co=256
 
 hi TabLine    gui=NONE guibg=#000000 guifg=#abb2bf    cterm=NONE term=NONE ctermfg=black ctermbg=white
 
@@ -102,10 +112,6 @@ if hostname() == 'amethyst'
 let g:vimwiki_list = [{'path': '~/Dropbox/Vimwiki',
                       \ 'syntax': 'markdown', 'ext': '.md',
                       \ 'index': 'Wiki' }]
-endif
-
-if !has('gui_running')
-	set t_Co=256
 endif
 
 let g:NERDTreeShowHidden = 1
@@ -140,3 +146,11 @@ nnoremap p "+p
 "
 " " Start NERDTree and put the cursor back in the other window.
 " autocmd VimEnter * NERDTree | wincmd p
+"
+if exists('$TMUX')
+    let &t_SI .= "\ePtmux;\e\e[=1c\e\\"
+    let &t_EI .= "\ePtmux;\e\e[=2c\e\\"
+ else
+    let &t_SI .= "\e[=1c"
+    let &t_EI .= "\e[=2c"
+ endif

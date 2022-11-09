@@ -19,7 +19,7 @@ table.insert(runtime_path, "lua/?/init.lua")
 local lspconfig = require("lspconfig")
 
 local function on_attach(client, bufnr)
-	-- set up buffer keymaps, etc.
+null
 end
 
 lspconfig.sumneko_lua.setup { on_attach = on_attach,
@@ -84,9 +84,9 @@ local kind_icons = {
 	Struct = "",
 	Event = "",
 	Operator = "",
-	-- TypeParameter = "",
--- }
--- -- find more here: https://www.nerdfonts.com/cheat-sheet
+	TypeParameter = "",
+}
+-- find more here: https://www.nerdfonts.com/cheat-sheet
 
 cmp.setup({
 	snippet = {
@@ -164,17 +164,17 @@ do
 	end
 end
 
-function _G.set_terminal_keymaps()
+null
 	local opts = { noremap = true }
-	vim.api.nvim_buf_set_keymap(0, 't', '<esc>', [[<C-\><C-n>]], opts)
-	vim.api.nvim_buf_set_keymap(0, 't', 'jk', [[<C-\><C-n>]], opts)
-	vim.api.nvim_buf_set_keymap(0, 't', '<C-h>', [[<C-\><C-n><C-W>h]], opts)
-	vim.api.nvim_buf_set_keymap(0, 't', '<C-j>', [[<C-\><C-n><C-W>j]], opts)
-	vim.api.nvim_buf_set_keymap(0, 't', '<C-k>', [[<C-\><C-n><C-W>k]], opts)
-	vim.api.nvim_buf_set_keymap(0, 't', '<C-l>', [[<C-\><C-n><C-W>l]], opts)
+null
+null
+null
+null
+null
+null
 end
 
-vim.cmd('autocmd! TermOpen term://* lua set_terminal_keymaps()')
+null
 
 -- Setup nvim-cmp.
 local cmp = require 'cmp'
@@ -211,14 +211,13 @@ cmp.setup.filetype('gitcommit', {
 	})
 })
 
--- -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
--- Breaks ability to save
--- cmp.setup.cmdline('/', {
--- mapping = cmp.mapping.preset.cmdline(),
--- sources = {
--- { name = 'buffer' }
--- }
--- })
+-- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
+cmp.setup.cmdline('/', {
+	mapping = cmp.mapping.preset.cmdline(),
+	sources = {
+		{ name = 'buffer' }
+	}
+})
 
 -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
 cmp.setup.cmdline(':', {

@@ -16024,8 +16024,11 @@ eta	snippets/snippets/latex.json	/^	"eta": {$/;"	o
 etc	snippets/snippets/latex.json	/^	"etc": {$/;"	o
 evaluate	snippets/snippets/cobol/vscode_cobol.json	/^	"evaluate": {$/;"	o
 event declaration	snippets/snippets/solidity.json	/^        "event declaration": {$/;"	o
+event_exited["dapui_config"]	config.lua	/^dap.listeners.before.event_exited["dapui_config"] = function()$/;"	f	unknown:dap.listeners.before
 event_exited["dapui_config"]	lua/config.lua	/^dap.listeners.before.event_exited["dapui_config"] = function()$/;"	f	unknown:dap.listeners.before
+event_initialized["dapui_config"]	config.lua	/^dap.listeners.after.event_initialized["dapui_config"] = function()$/;"	f	unknown:dap.listeners.after
 event_initialized["dapui_config"]	lua/config.lua	/^dap.listeners.after.event_initialized["dapui_config"] = function()$/;"	f	unknown:dap.listeners.after
+event_terminated["dapui_config"]	config.lua	/^dap.listeners.before.event_terminated["dapui_config"] = function()$/;"	f	unknown:dap.listeners.before
 event_terminated["dapui_config"]	lua/config.lua	/^dap.listeners.before.event_terminated["dapui_config"] = function()$/;"	f	unknown:dap.listeners.before
 example block	snippets/snippets/org.json	/^  "example block": {$/;"	o
 example function	snippets/snippets/go.json	/^  "example function": {$/;"	o
@@ -16036,6 +16039,7 @@ exit	snippets/snippets/frameworks/twig.json	/^  "exit": {$/;"	o
 exit program	snippets/snippets/cobol/vscode_cobol.json	/^	"exit program": {$/;"	o
 exp	snippets/snippets/glsl.json	/^  "exp": {$/;"	o
 exp2	snippets/snippets/glsl.json	/^  "exp2": {$/;"	o
+expand	config.lua	/^		expand = function(args)$/;"	f
 expand	lua/compe-config.lua	/^    expand = function(args)$/;"	f
 expand	lua/config.lua	/^		expand = function(args)$/;"	f
 expand	lua/lua_config.lua	/^      expand = function(args)$/;"	f
@@ -16219,6 +16223,7 @@ fori	snippets/snippets/java.json	/^  "fori": {$/;"	o
 forin	snippets/snippets/objc.json	/^  "forin": {$/;"	o
 forline	snippets/snippets/lua.json	/^    "forline": {$/;"	o
 form	snippets/snippets/html.json	/^    "form": {$/;"	o
+format	config.lua	/^		format = function(entry, vim_item)$/;"	f
 format	lua/config.lua	/^		format = function(entry, vim_item)$/;"	f
 format	snippets/snippets/rust.json	/^  "format": {$/;"	o
 format_args	snippets/snippets/rust.json	/^  "format_args": {$/;"	o
@@ -16396,6 +16401,7 @@ h3	snippets/snippets/html.json	/^    "h3": {$/;"	o
 h4	snippets/snippets/html.json	/^    "h4": {$/;"	o
 h5	snippets/snippets/html.json	/^    "h5": {$/;"	o
 h6	snippets/snippets/html.json	/^    "h6": {$/;"	o
+handlers[method]	config.lua	/^	vim.lsp.handlers[method] = function(err, method, result, client_id, bufnr, config)$/;"	f	unknown:vim.lsp
 handlers[method]	lua/config.lua	/^	vim.lsp.handlers[method] = function(err, method, result, client_id, bufnr, config)$/;"	f	unknown:vim.lsp
 hat	snippets/snippets/latex.json	/^	"hat": {$/;"	o
 head	snippets/snippets/frameworks/twig.json	/^  "head": {$/;"	o
@@ -16837,6 +16843,7 @@ main method-id	snippets/snippets/cobol/vscode_cobol.json	/^	"main method-id": {$
 main_object	snippets/snippets/scala.json	/^  "main_object": {$/;"	o
 make(...)	snippets/snippets/go.json	/^  "make(...)": {$/;"	o
 manager	snippets/snippets/frameworks/django/models.json	/^  "manager": {$/;"	o
+map	keymaps.lua	/^local function map(mode, lhs, rhs, opts)$/;"	f
 map	lua/keymaps.lua	/^local function map(mode, lhs, rhs, opts)$/;"	f
 map	snippets/snippets/html.json	/^    "map": {$/;"	o
 map	snippets/snippets/julia.json	/^  "map": {$/;"	o
@@ -17017,6 +17024,7 @@ nonumber	snippets/snippets/latex.json	/^	"nonumber": {$/;"	o
 normalize	snippets/snippets/glsl.json	/^  "normalize": {$/;"	o
 noscript	snippets/snippets/html.json	/^    "noscript": {$/;"	o
 not	snippets/snippets/fortran.json	/^  "not": {$/;"	o
+notify	config.lua	/^vim.notify = function(msg, log_level, _opts)$/;"	f	unknown:vim
 notify	lua/config.lua	/^vim.notify = function(msg, log_level, _opts)$/;"	f	unknown:vim
 now	snippets/snippets/frameworks/djangohtml.json	/^	"now": {$/;"	o
 nsenum	snippets/snippets/objc.json	/^  "nsenum": {$/;"	o
@@ -17040,6 +17048,7 @@ onDeactivated-composition	snippets/snippets/frameworks/vue/javascript.json	/^   
 onMounted-composition	snippets/snippets/frameworks/vue/javascript.json	/^    "onMounted-composition": {$/;"	o
 onUnmounted-composition	snippets/snippets/frameworks/vue/javascript.json	/^    "onUnmounted-composition": {$/;"	o
 onUpdated-composition	snippets/snippets/frameworks/vue/javascript.json	/^    "onUpdated-composition": {$/;"	o
+on_attach	config.lua	/^local function on_attach(client, bufnr)$/;"	f
 on_attach	lua/config.lua	/^local function on_attach(client, bufnr)$/;"	f
 op	snippets/snippets/fortran.json	/^  "op": {$/;"	o
 opacity	snippets/snippets/css.json	/^  "opacity": {$/;"	o
@@ -17216,6 +17225,7 @@ polygon shape	snippets/snippets/glsl.json	/^  "polygon shape": {$/;"	o
 position	snippets/snippets/css.json	/^  "position": {$/;"	o
 position	snippets/snippets/javascript/react-native-ts.json	/^		"position": {$/;"	o
 position	snippets/snippets/javascript/react-native.json	/^		"position": {$/;"	o
+post_install_hook	config.lua	/^require 'nvim-lsp-installer'.post_install_hook = function()$/;"	f	unknown:'nvim-lsp-installer'
 post_install_hook	lua/config.lua	/^require 'nvim-lsp-installer'.post_install_hook = function()$/;"	f	unknown:'nvim-lsp-installer'
 post_install_hook	lua/lua_config.lua	/^require'lspinstall'.post_install_hook = function ()$/;"	f	unknown:require'lspinstall'
 pow	snippets/snippets/glsl.json	/^  "pow": {$/;"	o
